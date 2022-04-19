@@ -53,9 +53,15 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
          ************************************************/
         for (int yNew = 0; yNew < newHeight; yNew++) {
             for (int xNew = 0; xNew < newWidth; xNew++) {
+//                int yOld = xNew;
+//                int xOld = oldWidth -yNew ;
                 int xOld = yNew;
-                int yOld = oldWidth -xNew -1;
+                int yOld = oldHeight -xNew -1;
+//                3=3 -0
+//                2=5- 2 -1
+//                0=5- ? -2
                 newPixelArray[yNew][xNew] = oldPixelArray[yOld][xOld];
+//                newPixelArray[1][1] = oldPixelArray[1][3];
             }
         }
         return new GImage(newPixelArray);

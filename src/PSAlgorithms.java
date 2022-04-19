@@ -46,7 +46,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
          ************************************************/
         int newHeight = oldWidth;                               // 新图片高度等于旧图片宽度
         int newWidth = oldHeight;                               // 新图片宽度等于旧图片高度
-        int[][] newPixelArray = new int[newHeight][newWidth];   // 为新图片新建一个数组，行数是newHeight，列数是newWidth
+        int[][] newPixelArray = new int[newWidth][newHeight];   // 为新图片新建一个数组，行数是newHeight，列数是newWidth
 
         /************************************************
          * 新旧数组的像素对应关系
@@ -68,8 +68,34 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
     }
 
     public GImage flipHorizontal(GImage source) {
-        // TODO
-        return null;
+        /************************************************
+         * 旋转前，旧图片的信息
+         ************************************************/
+        int[][] oldPixelArray = source.getPixelArray();     // 旧图片数组
+        int oldHeight = oldPixelArray.length;               // 旧图片高度
+        int oldWidth = oldPixelArray[0].length;             // 旧图片宽度
+
+        /************************************************
+         * 旋转前，旧图片的信息
+         ************************************************/
+        int newHeight = oldHeight;                               // 新图片高度等于旧图片高度
+        int newWidth = oldWidth;                               // 新图片宽度等于旧图片宽度
+        int[][] newPixelArray = new int[newHeight][newWidth];   // 为新图片新建一个数组，行数是newHeight，列数是newWidth
+
+        /************************************************
+         * 新旧数组的像素对应关系
+         ************************************************/
+        for (int xNew = 0; xNew < newHeight; xNew++) {
+            for (int yNew = 0; yNew < newWidth; yNew++) {
+//                int yOld = xNew;
+//                int xOld = oldWidth -yNew ;
+                int xOld = xNew;
+                int yOld = newWidth-yNew -1;
+                newPixelArray[xNew][yNew] = oldPixelArray[xOld][yOld];
+//                newPixelArray[1][1] = oldPixelArray[1][3];
+            }
+        }
+        return new GImage(newPixelArray);
     }
 
     public GImage negative(GImage source) {

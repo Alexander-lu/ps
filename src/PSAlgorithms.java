@@ -134,7 +134,33 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
      * @return              裁剪后的图片
      */
     public GImage crop(GImage source, int cropX, int cropY, int cropWidth, int cropHeight) {
-        // TODO
-        return null;
+        /************************************************
+         * 旋转前，旧图片的信息
+         ************************************************/
+        int[][] oldPixelArray = source.getPixelArray();     // 旧图片数组
+//        int oldHeight = oldPixelArray.length;               // 旧图片高度
+//        int oldWidth = oldPixelArray[0].length;             // 旧图片宽度
+
+        /************************************************
+         * 旋转前，旧图片的信息
+         ************************************************/
+        int newHeight = cropHeight;                               // 新图片高度等于旧图片高度
+        int newWidth =  cropWidth;                               // 新图片宽度等于旧图片宽度
+        int[][] newPixelArray = new int[cropHeight][cropWidth];   // 为新图片新建一个数组，行数是newHeight，列数是newWidth
+
+        /************************************************
+         * 新旧数组的像素对应关系
+         ************************************************/
+        for (int xNew = 0; xNew < cropHeight; xNew++) {
+            for (int yNew = 0; yNew < cropWidth; yNew++) {
+//                int yOld = xNew;
+//                int xOld = oldWidth -yNew ;
+                int xOld = xNew+cropY;
+                int yOld = yNew+cropX;
+                newPixelArray[xNew][yNew] = oldPixelArray[xOld][yOld];
+//                newPixelArray[1][1] = oldPixelArray[1][3];
+            }
+        }
+        return new GImage(newPixelArray);
     }
 }

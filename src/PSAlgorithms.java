@@ -125,7 +125,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
         int[][] newPixelArray = new int[oldHeight][oldWidth];
         for (int row = 0; row < oldWidth; row++) {
             for (int col = 0; col < oldHeight; col++) {
-                if (GImage.getGreen(oldPixelArray[col][row])>=Math.max(GImage.getRed(oldPixelArray[col][row]),GImage.getBlue(oldPixelArray[col][row]))){
+                if (GImage.getGreen(oldPixelArray[col][row])>=2*Math.max(GImage.getRed(oldPixelArray[col][row]),GImage.getBlue(oldPixelArray[col][row]))){
                     int newPixel = GImage.createRGBPixel(0, 0, 0,0);
                     newPixelArray[col][row] = newPixel;
                 } else  {newPixelArray[col][row] = oldPixelArray[col][row];}

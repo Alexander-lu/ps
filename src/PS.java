@@ -60,8 +60,20 @@ public class PS extends GraphicsProgram {
         add(new JButton("水平翻转"), WEST);
         add(new JButton("反相"), WEST);
         add(new JButton("均衡化"), WEST);
+        add(new JButton("黑白滤镜"), WEST);
+        add(new JButton("灰度滤镜1"), WEST);
+        add(new JButton("灰度滤镜2"), WEST);
+        add(new JButton("灰度滤镜3"), WEST);
+        add(new JButton("灰度滤镜4"), WEST);
+        add(new JButton("去色滤镜"), WEST);
+        add(new JButton("红色滤镜"), WEST);
+        add(new JButton("绿色滤镜"), WEST);
+        add(new JButton("蓝色滤镜"), WEST);
+        add(new JButton("怀旧滤镜"), WEST);
+        add(new JButton("连环画滤镜"), WEST);
+        add(new JButton("日晒滤镜"), WEST);
         add(new JButton("绿屏扣图"), WEST);
-        add(new JButton("卷积"), WEST);
+        add(new JButton("模糊"), WEST);
         add(new JButton("裁剪"), WEST);
 
         // NORTH是窗口上部
@@ -110,7 +122,55 @@ public class PS extends GraphicsProgram {
             GImage newImage = algorithms.junhenghua(currentImage);
             setImage(newImage);
             infoLabel.setText(command + "已生效。");
-        } else if (command.equals("裁剪")) {
+        } else if (command.equals("黑白滤镜")) {
+            GImage newImage = algorithms.heiBai(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        } else if (command.equals("灰度滤镜1")) {
+            GImage newImage = algorithms.huiDu1(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("灰度滤镜2")) {
+            GImage newImage = algorithms.huiDu2(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("灰度滤镜3")) {
+            GImage newImage = algorithms.huiDu3(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("灰度滤镜4")) {
+            GImage newImage = algorithms.huiDu4(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("去色滤镜")) {
+            GImage newImage = algorithms.quSe(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("红色滤镜")) {
+            GImage newImage = algorithms.hongSe(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("绿色滤镜")) {
+            GImage newImage = algorithms.lvSe(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("蓝色滤镜")) {
+            GImage newImage = algorithms.lanSe(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("怀旧滤镜")) {
+            GImage newImage = algorithms.huaiJiu(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("连环画滤镜")) {
+            GImage newImage = algorithms.lianHuanHua(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("日晒滤镜")) {
+            GImage newImage = algorithms.riShai(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        }else if (command.equals("裁剪")) {
             if (currentlySelecting) {
                 GImage newImage = algorithms.crop(currentImage, (int) selectedArea.getX(),
                         (int) selectedArea.getY(), (int) selectedArea.getWidth(),
@@ -121,7 +181,7 @@ public class PS extends GraphicsProgram {
             } else {
                 showErrorPopup("请选择裁剪区域");
             }
-        } else if (command.equals("卷积")) {
+        } else if (command.equals("模糊")) {
             GImage newImage = algorithms.convolution(currentImage);
             setImage(newImage);
             infoLabel.setText(command + "已生效。");

@@ -112,7 +112,190 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
                 pixelArray[col][row] = newPixel;
             }
         }
-
+        return new GImage(pixelArray);
+    }
+        public GImage heiBai(GImage source) {
+            int[][] pixelArray = source.getPixelArray();
+            for (int row = 0; row < pixelArray[0].length; row++) {
+                for (int col = 0; col < pixelArray.length; col++) {
+                    int pixel = pixelArray[col][row];
+                    int r = GImage.getRed(pixel);
+                    int g = GImage.getGreen(pixel);
+                    int b = GImage.getBlue(pixel);
+                    int average = (r+g+b)/3;
+                    if (average >= 100){
+                        int newPixel = GImage.createRGBPixel(255, 255, 255);
+                        pixelArray[col][row] = newPixel;
+                    } else {
+                        int newPixel = GImage.createRGBPixel(0, 0, 0);
+                        pixelArray[col][row] = newPixel;
+                    }
+                }
+            }
+        return new GImage(pixelArray);
+    }
+    public GImage huiDu1(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int average = (r+g+b)/3;
+                    int newPixel = GImage.createRGBPixel(average, average, average);
+                    pixelArray[col][row] = newPixel;
+                }
+            }
+        return new GImage(pixelArray);
+        }
+    public GImage huiDu2(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int gray = Math.max(r,Math.max(g,b));
+                int newPixel = GImage.createRGBPixel(gray, gray, gray);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage huiDu3(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int gray = Math.min(r,Math.min(g,b));
+                int newPixel = GImage.createRGBPixel(gray, gray, gray);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage huiDu4(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int gray = (int) (0.299 * r + 0.587F * g + 0.114 * b);
+                int newPixel = GImage.createRGBPixel(gray, gray, gray);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage quSe(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int grayMax = Math.max(r,Math.max(g,b));
+                int grayMin = Math.min(r,Math.min(g,b));
+                int gray = (grayMin + grayMax)/2;
+                int newPixel = GImage.createRGBPixel(gray, gray, gray);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage hongSe(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int newPixel = GImage.createRGBPixel(r, 0, 0);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage lvSe(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int g = GImage.getGreen(pixel);
+                int newPixel = GImage.createRGBPixel(0, g, 0);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage lanSe(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int b = GImage.getBlue(pixel);
+                int newPixel = GImage.createRGBPixel(0, 0, b);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage huaiJiu(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int huaiJiuR = (int) (0.393 * r + 0.796F * g + 0.189 * b);
+                int huaiJiuG = (int) (0.349 * r + 0.686F * g + 0.168 * b);
+                int huaiJiuB = (int) (0.272 * r + 0.534F * g + 0.131 * b);
+                huaiJiuR = Math.max(0,Math.min(huaiJiuR,255));
+                huaiJiuG = Math.max(0,Math.min(huaiJiuG,255));
+                huaiJiuB = Math.max(0,Math.min(huaiJiuB,255));
+                int newPixel = GImage.createRGBPixel(huaiJiuR, huaiJiuG, huaiJiuB);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage lianHuanHua(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                    int red = Math.abs((2 * GImage.getGreen(pixel) - GImage.getBlue(pixel) + GImage.getRed(pixel)) * GImage.getRed(pixel) / 256);
+                    int green = Math.abs((2 * GImage.getBlue(pixel) - GImage.getGreen(pixel) + GImage.getRed(pixel)) * GImage.getRed(pixel) / 256);
+                    int blue = Math.abs((2 * GImage.getBlue(pixel) - GImage.getGreen(pixel) + GImage.getRed(pixel)) * GImage.getGreen(pixel) / 256);
+                    red = Math.min(red, 255);
+                    green = Math.min(green, 255);
+                    blue = Math.min(blue, 255);
+                int newPixel = GImage.createRGBPixel(red, green, blue);
+                pixelArray[col][row] = newPixel;
+            }
+        }
+        return new GImage(pixelArray);
+    }
+    public GImage riShai(GImage source) {
+        int[][] pixelArray = source.getPixelArray();
+        for (int row = 0; row < pixelArray[0].length; row++) {
+            for (int col = 0; col < pixelArray.length; col++) {
+                int pixel = pixelArray[col][row];
+                        int red = Math.abs(2 * GImage.getRed(pixel) - 255);
+                        int green = Math.abs(2 * GImage.getGreen(pixel) - 255);
+                        int blue = Math.abs(2 * GImage.getBlue(pixel) - 255);
+                int newPixel = GImage.createRGBPixel(red, green, blue);
+                pixelArray[col][row] = newPixel;
+            }
+        }
         return new GImage(pixelArray);
     }
     public GImage junhenghua(GImage source) {

@@ -80,7 +80,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
          ************************************************/
         int newHeight = oldHeight;                               // 新图片高度等于旧图片高度
         int newWidth = oldWidth;                               // 新图片宽度等于旧图片宽度
-        int[][] newPixelArray = new int[newHeight][newWidth];   // 为新图片新建一个数组，行数是newHeight，列数是newWidth
+        int[][] newPixelArray = new int[newHeight][newWidth];   // 为新图片新建一个数组，行数是oldHeight，列数是oldWidth
 
         /************************************************
          * 新旧数组的像素对应关系
@@ -115,10 +115,24 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
     }
 
     public GImage greenScreen(GImage source) {
-        // TODO
-        return null;
-    }
+//         旋转前，旧图片的信息
+        int[][] oldPixelArray = source.getPixelArray();
 
+        int oldHeight = oldPixelArray.length;
+        // 旧图片高度
+        int oldWidth = oldPixelArray[0].length;
+        // 旧图片宽度
+        int[][] newPixelArray = new int[oldHeight][oldWidth];
+        for (int row = 0; row < oldWidth; row++) {
+            for (int col = 0; col < oldHeight; col++) {
+                if (GImage.getGreen(oldPixelArray[col][row])>=Math.max(GImage.getRed(oldPixelArray[col][row]),GImage.getBlue(oldPixelArray[col][row]))){
+                    int newPixel = GImage.createRGBPixel(0, 0, 0,0);
+                    newPixelArray[col][row] = newPixel;
+                } else  {newPixelArray[col][row] = oldPixelArray[col][row];}
+            }
+        }
+        return new GImage(newPixelArray);
+    }
     public GImage convolution(GImage source) {
         /************************************************
          * 旋转前，旧图片的信息

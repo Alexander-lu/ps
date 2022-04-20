@@ -124,9 +124,9 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
         // 旧图片宽度
         int[][] newPixelArray = new int[oldHeight][oldWidth];
         int[] n=new int[256];
-        for (int row = 0; row < oldWidth; row++) {
-            for (int col = 0; col < oldHeight; col++) {
-                int pixel = oldPixelArray[col][row];
+        for (int row = 0; row < oldHeight; row++) {
+            for (int col = 0; col < oldWidth; col++) {
+                int pixel = oldPixelArray[row][col];
                 int r = GImage.getRed(pixel);
                 int g = GImage.getGreen(pixel);
                 int b = GImage.getBlue(pixel);
@@ -134,12 +134,18 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
                 n[luminosity]++;
             }
         }
-        for (int row = 0; row < oldWidth; row++) {
-            for (int col = 0; col < oldHeight; col++) {
-                int pixel = oldPixelArray[col][row];
+        for (int row = 0; row < oldHeight; row++) {
+            for (int col = 0; col < oldWidth; col++) {
+                int pixel = oldPixelArray[row][col];
                 int luminosity = computeLuminosity(GImage.getRed(pixel), GImage.getGreen(pixel), GImage.getBlue(pixel));
-                int newluminosity = (int) Math.floor(255*n[luminosity]/oldWidth*oldHeight);
-                newPixelArray[col][row] = GImage.createRGBPixel(newluminosity, newluminosity, newluminosity);
+                int mkj=0;
+                for (int a=0;a<256;a++) {
+                    if (a<=luminosity) {
+                        mkj += n[a];
+                    }
+                }
+                int newluminosity = (int) Math.floor(255*mkj/(oldWidth*oldHeight));
+                newPixelArray[row][col] = GImage.createRGBPixel(newluminosity, newluminosity, newluminosity);
                 }
         }
         return new GImage(newPixelArray);

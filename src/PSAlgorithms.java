@@ -124,7 +124,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
         // 旧图片宽度
         int ooooo = oldHeight*oldWidth;
         int[][] newPixelArray = new int[oldHeight][oldWidth];
-        int[] n=new int[256];
+        int[] n=new int[9999];
         for (int row = 0; row < oldHeight; row++) {
             for (int col = 0; col < oldWidth; col++) {
                 int pixel = oldPixelArray[row][col];

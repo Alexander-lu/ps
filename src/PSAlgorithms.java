@@ -140,7 +140,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
                 int pixel = oldPixelArray[row][col];
                 int luminosity = computeLuminosity(GImage.getRed(pixel), GImage.getGreen(pixel), GImage.getBlue(pixel));
                 int mkj=0;
-                for (int a=0;a<255;a++) {
+                for (int a=0;a<300;a++) {
                     if (a<=luminosity) {
                         mkj += n[a];
                     }

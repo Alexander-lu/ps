@@ -122,6 +122,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
         // 旧图片高度
         int oldWidth = oldPixelArray[0].length;
         // 旧图片宽度
+        int ooooo = oldHeight*oldWidth;
         int[][] newPixelArray = new int[oldHeight][oldWidth];
         int[] n=new int[256];
         for (int row = 0; row < oldHeight; row++) {
@@ -144,7 +145,8 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
                         mkj += n[a];
                     }
                 }
-                int newluminosity = (int) Math.floor(255*mkj/(oldWidth*oldHeight));
+                int mjkl = 255*mkj;
+                int newluminosity = mjkl/ooooo;
                 newPixelArray[row][col] = GImage.createRGBPixel(newluminosity, newluminosity, newluminosity);
                 }
         }

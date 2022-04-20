@@ -1,6 +1,8 @@
 import acm.graphics.*;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class PSAlgorithms implements PSAlgorithmsInterface {
 
@@ -113,7 +115,44 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
 
         return new GImage(pixelArray);
     }
+    public GImage junhenghua(GImage source) {
+//         旋转前，旧图片的信息
+        int[][] oldPixelArray = source.getPixelArray();
+        int oldHeight = oldPixelArray.length;
+        // 旧图片高度
+        int oldWidth = oldPixelArray[0].length;
+        // 旧图片宽度
+        int[] luminosityTotal = new int[oldWidth*oldHeight];
+        int[][] newPixelArray = new int[oldHeight][oldWidth];
+        int n = 0;
 
+        for (int row = 0; row < oldWidth; row++) {
+            for (int col = 0; col < oldHeight; col++) {
+                int pixel = oldPixelArray[row][col];
+                int r = GImage.getRed(pixel);
+                int g = GImage.getGreen(pixel);
+                int b = GImage.getBlue(pixel);
+                int luminosity = computeLuminosity(GImage.getRed(pixel), GImage.getGreen(pixel), GImage.getBlue(pixel));
+                luminosityTotal[n] = luminosity;
+                n++;
+            }
+        }
+        for (int row = 0; row < oldWidth; row++) {
+            for (int col = 0; col < oldHeight; col++) {
+                int pixel = oldPixelArray[col][row];
+                int luminosity = computeLuminosity(GImage.getRed(pixel), GImage.getGreen(pixel), GImage.getBlue(pixel));
+                int m =0;
+                for (int object : luminosityTotal) {
+                    if (luminosity>=object) {
+                        m++;
+                    }
+                }
+                int newluminosity = (int) Math.floor(255*m/oldWidth*oldHeight);
+                newPixelArray[col][row] = GImage.createRGBPixel(newluminosity, newluminosity, newluminosity);
+            }
+        }
+        return new GImage(newPixelArray);
+    }
     public GImage greenScreen(GImage source) {
 //         旋转前，旧图片的信息
         int[][] oldPixelArray = source.getPixelArray();

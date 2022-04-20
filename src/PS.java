@@ -59,6 +59,7 @@ public class PS extends GraphicsProgram {
         add(new JButton("顺时针旋转"), WEST);
         add(new JButton("水平翻转"), WEST);
         add(new JButton("反相"), WEST);
+        add(new JButton("均衡化"), WEST);
         add(new JButton("绿屏扣图"), WEST);
         add(new JButton("卷积"), WEST);
         add(new JButton("裁剪"), WEST);
@@ -103,6 +104,10 @@ public class PS extends GraphicsProgram {
             infoLabel.setText(command + "已生效。");
         } else if (command.equals("反相")) {
             GImage newImage = algorithms.negative(currentImage);
+            setImage(newImage);
+            infoLabel.setText(command + "已生效。");
+        } else if (command.equals("均衡化")) {
+            GImage newImage = algorithms.junhenghua(currentImage);
             setImage(newImage);
             infoLabel.setText(command + "已生效。");
         } else if (command.equals("裁剪")) {

@@ -120,8 +120,41 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
     }
 
     public GImage convolution(GImage source) {
-        // TODO
-        return null;
+        /************************************************
+         * 旋转前，旧图片的信息
+         ************************************************/
+        int[][] oldPixelArray = source.getPixelArray();
+        int oldHeight = oldPixelArray.length;
+        // 旧图片高度
+        int oldWidth = oldPixelArray[0].length;
+        // 旧图片宽度
+        int[][] newPixelArray = new int[oldHeight][oldWidth];
+        // 为新图片新建一个数组，行数是newHeight，列数是newWidth
+        for (int col = 0; col < oldHeight; col++) {
+            for (int row = 0; row < oldWidth; row++) {
+                newPixelArray[col][row] = juanji(oldPixelArray,row,col,oldWidth,oldHeight);
+            }
+        }
+        return new GImage(newPixelArray);
+    }
+    public int juanji(int[][]oldPixelArray,int i,int o,int oldWidth,int oldHeight){
+        int rTotal = 0;
+        int gTotal = 0;
+        int bTotal = 0;
+        int ji = 0;
+        int xMax = Math.min(i+CONVOLUTION_RADIUS,oldWidth-1);
+        int xMin = Math.max(i-CONVOLUTION_RADIUS,0);
+        int yMax = Math.min(o+CONVOLUTION_RADIUS,oldHeight-1);
+        int yMin = Math.max(o-CONVOLUTION_RADIUS,0);
+        for (int y=yMin; y <= yMax; y++) {
+            for (int x=xMin; x <= xMax; x++) {
+                rTotal += GImage.getRed(oldPixelArray[y][x]);
+                gTotal += GImage.getGreen(oldPixelArray[y][x]);
+                bTotal += GImage.getBlue(oldPixelArray[y][x]);
+                ji++;
+            }
+        }
+        return GImage.createRGBPixel(rTotal/ji,gTotal/ji ,bTotal/ji);
     }
 
     /**

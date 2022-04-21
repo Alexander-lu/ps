@@ -307,7 +307,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
         // 旧图片宽度
         int ooooo = oldHeight*oldWidth;
         int[][] newPixelArray = new int[oldHeight][oldWidth];
-        int[] n=new int[9999];
+        int[] n=new int[256];
         for (int row = 0; row < oldHeight; row++) {
             for (int col = 0; col < oldWidth; col++) {
                 int pixel = oldPixelArray[row][col];
@@ -323,7 +323,7 @@ public class PSAlgorithms implements PSAlgorithmsInterface {
                 int pixel = oldPixelArray[row][col];
                 int luminosity = computeLuminosity(GImage.getRed(pixel), GImage.getGreen(pixel), GImage.getBlue(pixel));
                 int mkj=0;
-                for (int a=0;a<300;a++) {
+                for (int a=0;a<256;a++) {
                     if (a<=luminosity) {
                         mkj += n[a];
                     }

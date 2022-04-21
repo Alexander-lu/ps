@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class PS extends GraphicsProgram {
 
-    public static final int APPLICATION_HEIGHT = 600;
+    public static final int APPLICATION_HEIGHT = 750;
 
     // 支持保存为3种图片格式
     private static final String[] SAVE_IMAGE_EXTENSIONS = new String[]{"png", "bmp", "wbmp"};
@@ -33,7 +33,6 @@ public class PS extends GraphicsProgram {
 
     // 图像算法
     private PSAlgorithms algorithms;
-
     protected GRect selectedArea;
     private boolean currentlySelecting;
     private double fixedX;
@@ -60,12 +59,12 @@ public class PS extends GraphicsProgram {
         add(new JButton("水平翻转"), WEST);
         add(new JButton("反相"), WEST);
         add(new JButton("均衡化"), WEST);
-        add(new JButton("黑白滤镜"), WEST);
-        add(new JButton("灰度滤镜1"), WEST);
-        add(new JButton("灰度滤镜2"), WEST);
-        add(new JButton("灰度滤镜3"), WEST);
-        add(new JButton("灰度滤镜4"), WEST);
-        add(new JButton("去色滤镜"), WEST);
+        add(new JButton("黑白滤镜"), EAST);
+        add(new JButton("灰度滤镜1"), EAST);
+        add(new JButton("灰度滤镜2"), EAST);
+        add(new JButton("灰度滤镜3"), EAST);
+        add(new JButton("灰度滤镜4"), EAST);
+        add(new JButton("去色滤镜"), EAST);
         add(new JButton("红色滤镜"), WEST);
         add(new JButton("绿色滤镜"), WEST);
         add(new JButton("蓝色滤镜"), WEST);
